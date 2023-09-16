@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Analysis Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Log Analysis Result</h1>
+    <table>
+        <tr>
+          <th>Start time</th>
+          <th>Stop time</th>
+          <th>Total time</th>
+        </tr>
+        {% for timestamp in total_on_timestamp %}
+        <tr>
+            <td>{{timestamp[0]}}</td>
+            <td {{'style:color: red;' if timestamp[3] else ''}} >{{timestamp[1]}}</td>
+            <td>{{timestamp[2]}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    <h2>Device ON duration: {{ on_duration }} or {{equivalent_day}} days </h2>
+    <p>ERR timestamps:</p>
+    <ul>
+        {% for timestamp in err_timestamps %}
+            <li>{{ timestamp }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
